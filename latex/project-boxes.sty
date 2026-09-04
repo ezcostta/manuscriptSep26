@@ -1,0 +1,50 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{project-boxes}
+
+\RequirePackage{xcolor}
+\RequirePackage{tcolorbox}
+\tcbuselibrary{breakable,skins}
+
+\definecolor{deepblue}{RGB}{27,72,119}
+\definecolor{softblue}{RGB}{235,244,251}
+\definecolor{darkgreen}{RGB}{29,103,74}
+\definecolor{softgreen}{RGB}{237,248,242}
+\definecolor{burgundy}{RGB}{124,43,62}
+\definecolor{softred}{RGB}{252,241,244}
+\definecolor{softgray}{RGB}{222,226,230}
+\definecolor{codeframe}{RGB}{108,117,125}
+
+\newtcolorbox{keybox}[1][]{
+	breakable,colback=softblue,colframe=deepblue,boxrule=0.7pt,arc=2pt,
+	left=7pt,right=7pt,top=6pt,bottom=6pt,
+	title=#1,fonttitle=\normalfont\scshape
+}
+\newtcolorbox{derivationbox}[1][]{
+	breakable,colback=softgreen,colframe=darkgreen,boxrule=0.7pt,arc=2pt,
+	left=7pt,right=7pt,top=6pt,bottom=6pt,
+	title=#1,fonttitle=\normalfont\scshape
+}
+\newtcolorbox{warningbox}[1][]{
+	breakable,colback=softred,colframe=burgundy,boxrule=0.7pt,arc=2pt,
+	left=7pt,right=7pt,top=6pt,bottom=6pt,
+	title=#1,fonttitle=\normalfont\scshape
+}
+\newtcolorbox{codebox}[1][]{
+	breakable,colback=softgray,colframe=codeframe,boxrule=0.6pt,arc=2pt,
+	left=7pt,right=7pt,top=6pt,bottom=6pt,
+	title=#1,fonttitle=\normalfont\scshape
+}
+
+\lstset{
+	basicstyle=\ttfamily\small,
+	backgroundcolor=\color{softgray},
+	frame=single,
+	rulecolor=\color{codeframe},
+	columns=fullflexible,
+	breaklines=true,
+	showstringspaces=false,
+	keepspaces=true,
+	keywordstyle=\color{deepblue},
+	commentstyle=\color{darkgreen},
+	stringstyle=\color{burgundy}
+}
