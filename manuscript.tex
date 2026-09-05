@@ -165,7 +165,117 @@ and pairing.
 
 \subsection{Transverse Fourier transformation and Bogoliubov-de Gennes (BdG) equations}
 
-We assume translational invariance along the transversal direction, in this way, we can perform a Fourier transformation over the $n$ indexes.
+We assume translational invariance along the transversal direction, in this way, we can perform a Fourier transformation along the $y$-direction. By assuming $N_y$ transverse cells with periodic boundary conditions, we write:
+\begin{align*}
+	\hat a_{jmn\sigma} & =\frac{1}{\sqrt{N_y}}
+	\sum_K\ee^{\ii Kn}\hat a_{jmK\sigma},
+	\\
+	\hat b_{jmn\sigma} & =\frac{1}{\sqrt{N_y}}
+	\sum_K\ee^{\ii Kn}\hat b_{jmK\sigma},
+	\label{eq:FT}
+\end{align*}
+with $K$ being the transverse momentum. By substituting these expressions into Eq. \eqref{eq:H-total}, we obtain a set of independent equations. In particular, Eq. \eqref{eq:H-t} becomes:
+\begin{equation}
+	\hat H_t(K)=-\sum_{j,m,\sigma}
+	\left[
+		\eta\hat a_{jmK\sigma}^{\dagger}\hat b_{jmK\sigma}
+		+\xi\hat a_{jmK\sigma}^{\dagger}\hat b_{j,m+1,K,\sigma}
+		+\hc
+		\right],
+	\label{eq:H-t-K}
+\end{equation}
+with
+\begin{equation}
+	\eta(K)=t(1+\ee^{\ii K}),
+	\qquad
+	\xi=t,
+	\label{eq:eta-xi}
+\end{equation}
+where the symbol $\eta$ denotes the effective intracell hopping and $\xi$ the
+longitudinal intercell hopping.  Note that $\xi$ is real, a fact used
+repeatedly below; $\eta$ is complex, and its phase is not removable because it
+is fixed relative to $\xi$.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
