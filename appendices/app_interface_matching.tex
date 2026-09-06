@@ -1,0 +1,38 @@
+\section{Interface matching systems}
+\label{app:interface-matching}
+
+The local interface maps used in Sec.~\ref{sec:conductance} are obtained from selector matrices that extract the active layer and the terminated-layer components from the central state $\Xi$.  At the left contact, layer~1 continues into the ferromagnetic lead and layer~2 terminates.  Let $S_L$ extract the four layer-1 BdG components and $M_L$ extract the two independent missing-neighbor components of the terminated layer.  Then the homogeneous left-interface problem is
+\begin{equation}
+    \begin{pmatrix}
+        S_LV_+ & -Z_F^-\\
+        M_LV_+ & 0_{2\times2}
+    \end{pmatrix}
+    \begin{pmatrix}
+        a_+^L\\ r
+    \end{pmatrix}
+    =
+    -
+    \begin{pmatrix}
+        S_LV_-\\ M_LV_-
+    \end{pmatrix}a_-^L.
+    \label{eq:left-interface-system-app}
+\end{equation}
+Adding the physical incident state replaces the right-hand side of the active-layer equation by $\zeta_{\rm in}-S_LV_-a_-^L$, leading to the affine map in Eq.~\eqref{eq:left-interface-map}.
+
+At the right contact, the active selector depends on the geometry.  For $g=\oneone$, the superconducting lead continues from layer~1; for $g=\onetwo$, it continues from layer~2.  The right-interface system is
+\begin{equation}
+    \begin{pmatrix}
+        S_R^{(g)}V_- & -Z_S^+\\
+        M_R^{(g)}V_- & 0_{2\times2}
+    \end{pmatrix}
+    \begin{pmatrix}
+        a_-^R\\ t
+    \end{pmatrix}
+    =
+    -
+    \begin{pmatrix}
+        S_R^{(g)}V_+\\ M_R^{(g)}V_+
+    \end{pmatrix}a_+^R.
+    \label{eq:right-interface-system-app}
+\end{equation}
+The full $6\times6$ systems in Eqs.~\eqref{eq:left-interface-system-app} and \eqref{eq:right-interface-system-app}, solved with pivoted linear algebra, are the numerical definition of the contact maps.  Schur-complement reductions are useful analytically, but a singular chosen pivot does not by itself imply that the full contact problem is singular.

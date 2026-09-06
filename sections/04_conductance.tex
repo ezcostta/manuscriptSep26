@@ -1,0 +1,181 @@
+\section{Interface maps and conductance}
+\label{sec:conductance}
+
+\subsection{Local interface maps}
+\label{subsec:interface-maps}
+
+At each atomically clean contact, the layer that continues into the monolayer lead is matched by continuity, while the layer that terminates imposes the absence of the fictitious neighbor outside the physical domain.  In the modal basis this produces one local $6\times6$ linear system at each interface.  Solving the left interface gives
+\begin{equation}
+    a_+^L=t_{\rm in}+R_F a_-^L,
+    \label{eq:left-interface-map}
+\end{equation}
+and
+\begin{equation}
+    r=r^{(0)}+T_{F\leftarrow C}a_-^L.
+    \label{eq:left-extraction-map}
+\end{equation}
+Here $t_{\rm in}$ is the central amplitude injected by the incident ferromagnetic electron, $R_F$ reflects a returning central mode back into the bilayer, and $T_{F\leftarrow C}$ extracts a central mode into outgoing ferromagnetic lead amplitudes.
+
+At the superconducting contact,
+\begin{equation}
+    a_-^R=R_S^{(g)}a_+^R,
+    \qquad
+    t=T_{S\leftarrow C}^{(g)}a_+^R.
+    \label{eq:right-interface-map}
+\end{equation}
+The geometry index $g$ enters only through the right-contact selectors, because the right lead continues from layer~1 in the $\oneone$ geometry and from layer~2 in the $\onetwo$ geometry.  The matrix $R_S^{(g)}$ contains both normal and Andreev blocks in central modal space,
+\begin{equation}
+    R_S^{(g)}=
+    \begin{pmatrix}
+        R_{S}^{ee,(g)} & R_{S}^{eh,(g)}\\
+        R_{S}^{he,(g)} & R_{S}^{hh,(g)}
+    \end{pmatrix}.
+    \label{eq:RS-blocks}
+\end{equation}
+The off-diagonal blocks arise from the Nambu structure of the superconducting lead modes; no phenomenological Andreev phase is inserted by hand.
+
+\subsection{Round-trip matrix}
+\label{subsec:round-trip}
+
+A right-going central amplitude leaving the left boundary first propagates to the right boundary, reflects at the superconducting contact, propagates back, and reflects at the ferromagnetic contact.  The corresponding round-trip matrix is
+\begin{equation}
+\begin{split}
+    \Mrt^{(g)}(E,K,\sigma,N)
+    &=
+    R_F P_-(N)R_S^{(g)}P_+(N) .
+\end{split}
+    \label{eq:Mrt}
+\end{equation}
+The exact cavity equation is
+\begin{equation}
+\begin{split}
+    \left[\mathbb I_4-\Mrt^{(g)}(E,K,\sigma,N)\right]a_+^L
+    &=
+    t_{\rm in} .
+\end{split}
+    \label{eq:cavity-equation}
+\end{equation}
+All matrices in Eq.~\eqref{eq:Mrt} are $4\times4$, while $t_{\rm in}$ and $a_+^L$ are four-component central modal vectors.
+
+Solving Eq.~\eqref{eq:cavity-equation} and inserting the result into Eq.~\eqref{eq:left-extraction-map} gives the Andreev-reflected amplitude
+\begin{equation}
+\begin{split}
+    r_{he}^{(g)}
+    ={}&
+    e_h^\dagger
+    T_{F\leftarrow C}
+    P_-(N)
+    R_S^{(g)}P_+(N)
+    \\
+    &\times
+    \left[\mathbb I_4-\Mrt^{(g)}\right]^{-1}
+    t_{\rm in} .
+\end{split}
+    \label{eq:rhe}
+\end{equation}
+Here $e_h=(0,1)^T$ selects the hole component of the outgoing ferromagnetic lead amplitude.  The direct reflection term at the left contact has no hole component because the left lead is normal.
+
+The quasiparticle transmission into the superconducting lead is
+\begin{equation}
+    t^{(g)}
+    =
+    T_{S\leftarrow C}^{(g)}P_+(N)
+    \left[\mathbb I_4-\Mrt^{(g)}\right]^{-1}t_{\rm in}.
+    \label{eq:transmitted-amplitudes}
+\end{equation}
+For $|E|<\Delta_0$, the physical superconducting modes are evanescent and carry no asymptotic transmitted flux.
+
+\subsection{BTK conductance}
+\label{subsec:conductance-formula}
+
+With all propagating lead modes normalized to unit flux, the reflection and transmission probabilities are
+\begin{equation}
+    R_N=|r_{ee}|^2,
+    \qquad
+    R_A=|r_{he}|^2,
+    \qquad
+    T_{\rm QP}=\sum_{\nu\in {\rm prop.}}|t_\nu|^2.
+    \label{eq:probabilities}
+\end{equation}
+Flux conservation gives
+\begin{equation}
+    R_N+R_A+T_{\rm QP}=1
+    \label{eq:unitarity-check}
+\end{equation}
+on the support of the incident channel.  The single-channel BTK conductance is
+\begin{equation}
+\begin{split}
+    g(E,K,\sigma,N)
+    ={}&
+    \chi_{\rm in}(E,K,\sigma)
+    \Bigl[
+        1-R_N(E,K,\sigma,N)
+    \\
+    &\qquad
+        +R_A(E,K,\sigma,N)
+    \Bigr] .
+\end{split}
+    \label{eq:channel-conductance}
+\end{equation}
+where
+\begin{equation}
+    \chi_{\rm in}(E,K,\sigma)=
+    \begin{cases}
+        1, & \text{incoming electron channel open},\\
+        0, & \text{otherwise}.
+    \end{cases}
+    \label{eq:chi-in}
+\end{equation}
+The condition $\chi_{\rm in}=1$ means that a propagating electron eigenmode of $T_F$ with $J>0$ exists at the chosen $(E,K,\sigma)$.  Equivalently, using Eq.~\eqref{eq:unitarity-check},
+\begin{equation}
+\begin{split}
+    g(E,K,\sigma,N)
+    ={}&
+    \chi_{\rm in}(E,K,\sigma)
+    \Bigl[
+        2R_A(E,K,\sigma,N)
+    \\
+    &\qquad
+        +T_{\rm QP}(E,K,\sigma,N)
+    \Bigr].
+\end{split}
+    \label{eq:channel-conductance-alt}
+\end{equation}
+
+The dimensionless conductance per transverse unit cell, in units of $e^2/h$, is.  In Eq.~\eqref{eq:G-total}, $R_A^{(g)}$ and $T_{\rm QP}^{(g)}$ are evaluated at the same arguments $(E,K,\sigma,N)$ as $\chi_{\rm in}$.
+\begin{equation}
+\begin{split}
+    G^{(g)}(E,N)
+    ={}&
+    \frac{1}{2\pi}
+    \sum_{\sigma=\pm1}
+    \int_{-\pi}^{\pi}dK\,
+    \chi_{\rm in}(E,K,\sigma)
+    \\
+    &\times
+    \left[2R_A^{(g)}+T_{\rm QP}^{(g)}\right] .
+\end{split}
+    \label{eq:G-total}
+\end{equation}
+For subgap energies,
+\begin{equation}
+    |E|<\Delta_0,
+    \qquad
+    T_{\rm QP}^{(g)}=0,
+\end{equation}
+and hence
+\begin{equation}
+\begin{split}
+    G_A^{(g)}(E,N)
+    ={}&
+    \frac{1}{2\pi}
+    \sum_{\sigma=\pm1}
+    \int_{-\pi}^{\pi}dK\,
+    \chi_{\rm in}(E,K,\sigma)
+    \\
+    &\times
+    2\left|r_{he}^{(g)}(E,K,\sigma,N)\right|^2 .
+\end{split}
+    \label{eq:GA-subgap}
+\end{equation}
+For a system of $N_y$ transverse cells, the total conductance is $(e^2/h)N_yG^{(g)}$, and the conductance per physical width $W=N_y a_y$ is $(e^2/h)G^{(g)}/a_y$.

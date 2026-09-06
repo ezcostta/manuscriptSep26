@@ -1,0 +1,59 @@
+\section{BdG commutators and pairing convention}
+\label{app:bdg-commutators}
+
+This appendix records the convention needed to keep the two spin-singlet BdG sectors in the same algebraic form.  In a complete one-particle basis, including spin, the pairing matrix is antisymmetric,
+\begin{equation}
+    \Delta_{ij}=-\Delta_{ji}.
+    \label{eq:Delta-antisymmetry-app}
+\end{equation}
+For onsite $s$-wave pairing the spatial, layer, and sublattice labels coincide, while the two spin labels are opposite; the spatial part is symmetric, but the full spin-orbital matrix remains antisymmetric.
+
+For the general quadratic pairing term
+\begin{equation}
+    \hat H_\Delta
+    =
+    \frac12\sum_{ij}
+    \left(
+        \Delta_{ij}\hat c_i^\dagger\hat c_j^\dagger
+        +
+        \Delta_{ij}^*\hat c_j\hat c_i
+    \right),
+\end{equation}
+the creation part gives
+\begin{align}
+    \left[
+        \frac12\sum_{ij}\Delta_{ij}\hat c_i^\dagger\hat c_j^\dagger,
+        v_l\hat c_l
+    \right]
+    &=
+    \frac12\sum_i v_l\left(\Delta_{il}-\Delta_{li}\right)\hat c_i^\dagger
+    \\
+    &=
+    \sum_i \Delta_{il}v_l\hat c_i^\dagger,
+    \label{eq:creation-pairing-comm}
+\end{align}
+where Eq.~\eqref{eq:Delta-antisymmetry-app} was used.  The conjugate pairing part gives a contribution proportional to
+\begin{equation}
+    \sum_i \Delta^*_{il}u_i\hat c_l.
+    \label{eq:conjugate-pairing-index}
+\end{equation}
+Thus the index order in the hole equation is fixed by
+\begin{equation}
+    (\Delta^\dagger)_{li}=\Delta^*_{il}.
+    \label{eq:Ddagger-index}
+\end{equation}
+
+With the quasiparticle operator of Eq.~\eqref{eq:qp-operator}, the $s_\sigma$ factor in the hole component cancels the spin-dependent sign of the singlet commutator.  After this cancellation the sector equations can be written as
+\begin{align}
+    E u_k
+    &=
+    \sum_l h_{kl}u_l+
+    \sum_i \Delta_{ki}v_i,
+    \\
+    E v_l
+    &=
+    -\sum_i h_{il}v_i+
+    \sum_i \Delta^*_{il}u_i.
+    \label{eq:bdg-component-equations-app}
+\end{align}
+Equation~\eqref{eq:bdg-component-equations-app} is the component form of the BdG block matrix in Eq.~\eqref{eq:BdG-block}.

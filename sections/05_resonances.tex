@@ -1,0 +1,145 @@
+\section{Resonance interpretation}
+\label{sec:resonances}
+
+\subsection{Real-axis resonance diagnostics}
+\label{subsec:real-axis-diagnostics}
+
+The exact object controlling internal resonances is the round-trip matrix in Eq.~\eqref{eq:Mrt}.  Since the scattering amplitudes contain the resolvent $[\mathbb I_4-\Mrt^{(g)}]^{-1}$, a resonance is associated with near-singularity of
+\begin{equation}
+    \mathcal R^{(g)}(E,K,\sigma,N)
+    =
+    \mathbb I_4-
+    \Mrt^{(g)}(E,K,\sigma,N).
+    \label{eq:resolvent-denominator}
+\end{equation}
+The determinant
+\begin{equation}
+    D_g(E,K,\sigma,N)
+    =
+    \det\mathcal R^{(g)}(E,K,\sigma,N)
+    \label{eq:det-diagnostic}
+\end{equation}
+is useful analytically, but on the real energy axis the more robust numerical diagnostic is the smallest singular value
+\begin{equation}
+    s_{\min}^{(g)}(E,K,\sigma,N)
+    =
+    s_{\min}\!\left[\mathcal R^{(g)}(E,K,\sigma,N)\right].
+    \label{eq:smin-diagnostic}
+\end{equation}
+A small value of $s_{\min}$ indicates that a pole of the open scattering problem lies close to the real axis.  It does not by itself guarantee a visible peak in the conductance, because the corresponding pole may be weakly excited or weakly read out as a hole.
+
+\subsection{Round-trip eigenvalues and bright versus dark poles}
+\label{subsec:bright-dark-poles}
+
+Assume for the moment that $\Mrt$ is diagonalizable.  Let
+\begin{align}
+    \Mrt v_j^R
+    &=\mu_j v_j^R,
+    \notag\\
+    (v_j^L)^\dagger\Mrt
+    &=\mu_j(v_j^L)^\dagger,
+    \notag\\
+    (v_j^L)^\dagger v_k^R
+    &=\delta_{jk}.
+    \label{eq:Mrt-biorthogonal}
+\end{align}
+Then the resolvent gives the modal decomposition
+\begin{equation}
+    r_{he}^{(g)}
+    =
+    \sum_j
+    \frac{C_j^{(g)}}{1-\mu_j^{(g)}}.
+    \label{eq:rhe-modal-sum}
+\end{equation}
+The residue factor is
+\begin{equation}
+    C_j^{(g)}
+    =
+    \left[
+        e_h^\dagger
+        T_{F\leftarrow C}
+        P_-
+        R_S^{(g)}
+        P_+
+        v_j^R
+    \right]
+    \left[
+        (v_j^L)^\dagger t_{\rm in}
+    \right].
+    \label{eq:Cj-residue}
+\end{equation}
+Writing
+\begin{equation}
+    \mu_j=\rho_j e^{i\Theta_j},
+    \label{eq:mu-polar}
+\end{equation}
+$\rho_j$ measures the survival of the amplitude after one complete internal cycle, while $\Theta_j$ is the coherent round-trip phase.  The factor $C_j$ is the product of an injection weight and a hole-readout weight.  Thus a pole-like feature of $\Mrt$ is bright in $G(E,N)$ only if $|C_j|$ is appreciable.  A mode for which $\mu_j\simeq1$ but $C_j\simeq0$ is a dark pole: it is present in the internal cavity but nearly invisible in the measured Andreev conductance.
+
+For a single isolated bright mode, the approximate fixed-channel resonance condition is
+\begin{align}
+    \rho_j(E,K,\sigma,N)&\simeq1,
+    \notag\\
+    \Theta_j(E,K,\sigma,N)&\simeq2\pi\ell,
+    \qquad
+    \ell\in\mathbb Z.
+    \label{eq:phase-condition}
+\end{align}
+This criterion refers to the channel-resolved quantity $g(E,K,\sigma,N)$, not yet to the transverse-integrated conductance.
+
+\subsection{From fixed-K resonances to integrated ridges}
+\label{subsec:fixed-K-to-integrated}
+
+A ridge in $G^{(g)}(E,N)$ is a feature of the integrated quantity in Eq.~\eqref{eq:G-total}.  Therefore a fixed-$K$ resonance survives transverse integration only if neighboring open channels resonate at nearly the same energy.  Let $E_{\ell j}(K,N;\sigma)$ be the solution of
+\begin{equation}
+    \Theta_j(E,K,\sigma,N)=2\pi\ell
+    \label{eq:E-ellj-definition}
+\end{equation}
+for a chosen branch.  The open incident-channel window is
+\begin{equation}
+    \mathcal W_{\rm in}(E,\sigma)
+    =
+    \left\{K\in[-\pi,\pi]:\chi_{\rm in}(E,K,\sigma)=1\right\}.
+    \label{eq:Win-definition}
+\end{equation}
+A practical $K$-flatness diagnostic is
+\begin{equation}
+    \delta E_{\ell j}(N;\sigma)
+    =
+    \max_{K\in\mathcal W_{\rm in}}E_{\ell j}(K,N;\sigma)
+    -
+    \min_{K\in\mathcal W_{\rm in}}E_{\ell j}(K,N;\sigma).
+    \label{eq:K-flatness}
+\end{equation}
+If
+\begin{equation}
+    \delta E_{\ell j}(N;\sigma)
+    \lesssim
+    \Gamma_{\ell j}(N;\sigma),
+    \label{eq:flatness-linewidth}
+\end{equation}
+where $\Gamma_{\ell j}$ is the numerical linewidth of the corresponding conductance peak, then neighboring transverse channels reinforce each other and the branch is expected to appear as a visible ridge in $G(E,N)$.  If $\delta E_{\ell j}\gg\Gamma_{\ell j}$, the fixed-$K$ resonances are dispersed over energy and are washed out by the transverse integral.
+
+A residue-weighted diagnostic is obtained from
+\begin{equation}
+    w_j(E,K,\sigma,N)
+    =
+    \frac{|C_j(E,K,\sigma,N)|^2}
+    {|1-\mu_j(E,K,\sigma,N)|^2}.
+    \label{eq:residue-weight}
+\end{equation}
+This avoids overemphasizing formally resonant branches that are dark because their injection or hole-readout residue is negligible.
+
+\subsection{Numerical workflow for ridge validation}
+\label{subsec:ridge-workflow}
+
+The formal interpretation becomes a testable result only after the predicted resonance branches are compared with the numerical conductance maps.  The code should output, for each $g$, $E$, $K$, $\sigma$, and $N$:
+\begin{enumerate}[label=(\roman*)]
+    \item the open-channel mask $\chi_{\rm in}$;
+    \item $R_N$, $R_A$, $T_{\rm QP}$, and the unitarity error $1-R_N-R_A-T_{\rm QP}$;
+    \item the fixed-channel conductance $g(E,K,\sigma,N)$ and integrated conductance $G^{(g)}(E,N)$;
+    \item the round-trip matrix $\Mrt^{(g)}$ and $s_{\min}(\mathbb I_4-\Mrt^{(g)})$;
+    \item the eigenvalues $\mu_j=\rho_j e^{i\Theta_j}$, with phases unwrapped across the grid;
+    \item the residues $C_j$ and weights $w_j$;
+    \item the branch curves $E_{\ell j}(K,N;\sigma)$ and the flatness measure $\delta E_{\ell j}(N;\sigma)$.
+\end{enumerate}
+The central figure supporting the resonance interpretation should overlay the predicted curves $E_{\ell j}(N)$ on the computed $G_A(E,N)$ map, retaining only branches with $\rho_j\simeq1$, appreciable $|C_j|$, and sufficient $K$-flatness.  The round-trip eigenvector should then be used to diagnose whether a visible ridge is predominantly normal Fabry--P\'erot-like, Andreev-like, or a mixed electron-hole interference mode.

@@ -1,0 +1,121 @@
+\section{Bogoliubov--de Gennes equations}
+\label{sec:bdg}
+
+The Fourier-space Hamiltonian of Sec.~\ref{subsec:fourier-hamiltonian} is now converted into algebraic tight-binding equations.  This intermediate step is useful because it shows explicitly how the microscopic model becomes the transfer recurrence used in Sec.~\ref{sec:transfer}.
+
+\subsection{BdG sector and quasiparticle operator}
+\label{subsec:bdg-sector}
+
+For a fixed electron spin $\sigma$, the corresponding hole has spin $-\sigma$.  We use the quasiparticle operator
+\begin{align}
+    \hat\gamma_{EK\sigma}^{\dagger}
+    &=
+    \sum_{j,m,\alpha}
+    \Big[
+        u_{j\alpha}(m)
+        \hat c_{jmK\alpha\sigma}^{\dagger}
+        +
+        s_\sigma v_{j\alpha}(m)
+        \hat c_{jm,-K,\alpha,-\sigma}
+    \Big].
+    \label{eq:qp-operator}
+\end{align}
+The factor $s_\sigma$ in the hole component cancels the spin-dependent sign produced by the spin-singlet pairing commutator.  With this convention, the two independent sectors $(e_\uparrow,h_\downarrow)$ and $(e_\downarrow,h_\uparrow)$ have the same off-diagonal BdG entries $+\Delta$ and $+\Delta^*$.
+
+The eigenoperator equation
+\begin{equation}
+    [\hat H^{(g)},\hat\gamma_{EK\sigma}^{\dagger}]
+    =
+    E\hat\gamma_{EK\sigma}^{\dagger}
+    \label{eq:eigenoperator}
+\end{equation}
+gives, in compact one-particle notation,
+\begin{equation}
+    \begin{pmatrix}
+        H_\sigma(K) & \Delta\\
+        \Delta^\dagger & -H^*_{-\sigma}(-K)
+    \end{pmatrix}
+    \begin{pmatrix}
+        u\\v
+    \end{pmatrix}
+    =
+    E
+    \begin{pmatrix}
+        u\\v
+    \end{pmatrix}.
+    \label{eq:BdG-block}
+\end{equation}
+The lower block contains three operations: spin reversal, momentum reversal, and complex conjugation.  These operations are responsible for the signs in the hole equations below.
+
+\subsection{Monolayer BdG equations}
+\label{subsec:monolayer-bdg-equations}
+
+For a uniform monolayer region with parameters $(\mu,h,\Delta)$ and no layer gate potential, define
+\begin{equation}
+    \epsilon_{e,\sigma}=E+\mu+s_\sigma h,
+    \qquad
+    \epsilon_{h,\sigma}=E-\mu+s_\sigma h.
+    \label{eq:eps-eh}
+\end{equation}
+Projecting Eq.~\eqref{eq:eigenoperator} onto the $A$ and $B$ sublattices gives
+\begin{align}
+    \epsilon_{e,\sigma}u_A(m)
+    &=
+    -\eta u_B(m)-\xi u_B(m+1)+\Delta v_A(m),
+    \label{eq:mono-eA}\\
+    \epsilon_{e,\sigma}u_B(m)
+    &=
+    -\eta^*u_A(m)-\xi^*u_A(m-1)+\Delta v_B(m),
+    \label{eq:mono-eB}\\
+    \epsilon_{h,\sigma}v_A(m)
+    &=
+    +\eta v_B(m)+\xi v_B(m+1)+\Delta^*u_A(m),
+    \label{eq:mono-hA}\\
+    \epsilon_{h,\sigma}v_B(m)
+    &=
+    +\eta^*v_A(m)+\xi^*v_A(m-1)+\Delta^*u_B(m).
+    \label{eq:mono-hB}
+\end{align}
+The electron equations inherit the minus sign of the hopping Hamiltonian, whereas the hole equations have the opposite hopping sign because they come from the block $-H^*_{-\sigma}(-K)$.  The exchange field enters both $\epsilon_{e,\sigma}$ and $\epsilon_{h,\sigma}$ with the same sign because the hole is a missing electron of spin $-\sigma$.
+
+In the ferromagnetic lead $\Delta=0$ and $h\ne0$.  In the superconducting lead $h=0$ and $\Delta=\Delta_0e^{i\varphi}$.
+
+\subsection{Central bilayer equations}
+\label{subsec:central-bilayer-equations}
+
+Inside the central bilayer, $h=\Delta=0$.  Define the layer-dependent scalar parameters
+\begin{equation}
+    x_{e,j}=E+\mu_C-V_j,
+    \qquad
+    x_{h,j}=\mu_C-E-V_j.
+    \label{eq:central-xe-xh}
+\end{equation}
+The electron amplitudes satisfy
+\begin{align}
+    x_{e,1}u_{A1}(m)
+    &=
+    -\eta u_{B1}(m)-\xi u_{B1}(m+1)-t_\perp u_{B2}(m),
+    \label{eq:bilayer-eA1}\\
+    x_{e,1}u_{B1}(m)
+    &=
+    -\eta^*u_{A1}(m)-\xi^*u_{A1}(m-1),
+    \label{eq:bilayer-eB1}\\
+    x_{e,2}u_{A2}(m)
+    &=
+    -\eta u_{B2}(m)-\xi u_{B2}(m+1),
+    \label{eq:bilayer-eA2}\\
+    x_{e,2}u_{B2}(m)
+    &=
+    -\eta^*u_{A2}(m)-\xi^*u_{A2}(m-1)-t_\perp u_{A1}(m).
+    \label{eq:bilayer-eB2}
+\end{align}
+The interlayer hopping appears only in the $A_1$ and $B_2$ equations, reflecting the AB dimer bond shown in Fig.~\ref{figgeometry}(c).
+
+The central hole equations have the same algebraic structure after the replacement
+\begin{equation}
+    u\mapsto v,
+    \qquad
+    x_{e,j}\mapsto x_{h,j}.
+    \label{eq:central-hole-map}
+\end{equation}
+This is the reason the central BdG transfer matrix in the next section is a direct sum of two normal bilayer transfer matrices evaluated at the two scalar arguments $\mu_C+E$ and $\mu_C-E$.

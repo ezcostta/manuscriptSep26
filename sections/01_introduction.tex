@@ -1,0 +1,16 @@
+\section{Introduction}
+\label{sec:introduction}
+
+Andreev reflection converts an incident electron into a reflected hole while transferring a Cooper pair to a superconducting condensate.  In graphene-based systems this process is sensitive not only to the superconducting gap, but also to the band structure, transverse momentum, doping, and interface geometry.  Adding a ferromagnetic region introduces spin-dependent longitudinal momenta and therefore suppresses or reshapes Andreev reflection through the mismatch between the electron and the time-reversed hole channel.
+
+The system considered here combines these ingredients with a finite AB-stacked bilayer-graphene section.  The bilayer acts as an internal coherent cavity: an electron-like or hole-like excitation injected from the ferromagnetic lead can undergo repeated normal and Andreev reflections at the two atomic contacts before escaping.  The finite length $N$ then enters through propagation phases and evanescent factors, producing resonance ridges in maps of the conductance as a function of excitation energy and bilayer length.
+
+The aim of this paper is to formulate a microscopic transfer-matrix description of this problem and to use it to interpret the length-dependent Andreev structures.  Unlike a phenomenological BTK model with an adjustable barrier strength \cite{btk1982}, the contact transparency is determined here by the actual honeycomb connectivity, the layer termination, the exchange field, the chemical potentials, and the superconducting pairing.  The normal bilayer transfer construction follows the lattice convention of Ref.~\onlinecite{olyaei2019}, generalized here to a spin-resolved Bogoliubov--de Gennes problem.
+
+The central formal result is a round-trip representation of the scattering problem.  For each transverse channel $K$, spin sector $\sigma$, and geometry $g$, repeated internal cycles are summed by the resolvent
+\begin{equation}
+    \left[\mathbb I_4-\Mrt^{(g)}(E,K,\sigma,N)\right]^{-1},
+\end{equation}
+where $\Mrt^{(g)}$ is the microscopic round-trip matrix of the finite bilayer cavity.  Its eigenvalues provide a direct diagnostic of the bright ridges in the conductance maps: a fixed-$K$ resonance occurs when a bright round-trip eigenvalue approaches unity, while a ridge in the transverse-integrated conductance survives only when the corresponding resonance branch is sufficiently flat over the open incident-channel window.
+
+The manuscript is organized as follows.  Section~\ref{sec:model} defines the lattice geometry, Hamiltonian, and BdG sector convention.  Section~\ref{sec:transfer} constructs the transfer matrices, flux normalization, and stable finite-length propagation.  Section~\ref{sec:conductance} derives the interface maps, round-trip matrix, scattering amplitudes, and conductance.  Section~\ref{sec:resonances} explains the resonance diagnostics used to interpret the conductance ridges.  Section~\ref{sec:results} is reserved for the numerical maps and overlays.

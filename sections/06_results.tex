@@ -1,0 +1,24 @@
+\section{Numerical results}
+\label{sec:results}
+
+This section is the next construction target.  The manuscript should not yet claim a final physical conclusion before the ridge diagnostics of Sec.~\ref{sec:resonances} have been computed and compared with the conductance maps.
+
+The first results subsection should present numerical validation: the mode classification, the convergence with respect to the transverse grid, and the unitarity error
+\begin{equation}
+    \epsilon_{\rm unitarity}
+    =
+    \left|1-R_N-R_A-T_{\rm QP}\right|.
+\end{equation}
+This audit should be shown before any physical interpretation of the maps.
+
+The second subsection should show the subgap Andreev conductance maps
+\begin{equation}
+    G_A^{(\oneone)}(E,N),
+    \qquad
+    G_A^{(\onetwo)}(E,N),
+\end{equation}
+for the parameter set used in the code validation.  The comparison between the two geometries should focus on which ridges are common, which are shifted, and which are enhanced or suppressed by changing the contacted layer at the superconducting side.
+
+The third subsection should implement the resonance overlay.  For the dominant bright branches, plot the numerically obtained conductance map together with the predicted curves $E_{\ell j}(N)$ extracted from the phase condition of Eq.~\eqref{eq:phase-condition}, filtered by the $K$-flatness diagnostic of Eq.~\eqref{eq:K-flatness} and the residue weight of Eq.~\eqref{eq:residue-weight}.
+
+The fourth subsection should analyze the dependence on the exchange field.  Since $h$ shifts the electron and hole longitudinal momenta in the ferromagnetic lead, it changes both the open-channel window $\chi_{\rm in}$ and the phase matching in the bilayer cavity.  The natural observable is the evolution of $G_A(E,N)$ and of the dominant round-trip eigenvalues with increasing spin polarization.

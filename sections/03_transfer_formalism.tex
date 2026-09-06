@@ -1,0 +1,199 @@
+\section{Transfer-matrix and mode formalism}
+\label{sec:transfer}
+
+The lattice equations of Sec.~\ref{sec:bdg} are second-order recurrences in the longitudinal index: an equation at cell $m$ contains amplitudes at $m-1$, $m$, and $m+1$.  The transfer-matrix construction rewrites them as first-order recurrences by grouping amplitudes on the two sides of a longitudinal cut.
+
+\subsection{Staggered transfer states}
+\label{subsec:staggered-states}
+
+For a normal monolayer, the natural transfer state is not $(A(m),B(m))^T$ but the staggered pair
+\begin{equation}
+    \phi_m=
+    \begin{pmatrix}
+        A(m-1)\\ B(m)
+    \end{pmatrix},
+    \qquad
+    \phi_{m+1}=
+    \begin{pmatrix}
+        A(m)\\ B(m+1)
+    \end{pmatrix}.
+    \label{eq:monolayer-state}
+\end{equation}
+This choice is dictated by Eqs.~\eqref{eq:mono-eA} and \eqref{eq:mono-eB}: the $A$ equation contains $B(m+1)$, while the $B$ equation contains $A(m-1)$.
+
+For the normal bilayer, the corresponding state is
+\begin{equation}
+    \Psi_m=
+    \begin{pmatrix}
+        A_1(m-1)\\ B_1(m)\\ A_2(m-1)\\ B_2(m)
+    \end{pmatrix},
+    \qquad
+    \Psi_{m+1}=
+    \begin{pmatrix}
+        A_1(m)\\ B_1(m+1)\\ A_2(m)\\ B_2(m+1)
+    \end{pmatrix}.
+    \label{eq:bilayer-state}
+\end{equation}
+The central BdG transfer state is the direct electron--hole extension
+\begin{equation}
+    \Xi_m=
+    \begin{pmatrix}
+        u_{A1}(m-1)\\
+        u_{B1}(m)\\
+        u_{A2}(m-1)\\
+        u_{B2}(m)\\
+        v_{A1}(m-1)\\
+        v_{B1}(m)\\
+        v_{A2}(m-1)\\
+        v_{B2}(m)
+    \end{pmatrix}.
+    \label{eq:central-BdG-state}
+\end{equation}
+The same staggered ordering is used everywhere below; changing it would also change the signs and the selector components used at the interfaces.
+
+\subsection{From tight-binding equations to transfer matrices}
+\label{subsec:tight-binding-to-transfer}
+
+The connection between the algebraic tight-binding equations and the transfer matrix can be seen directly in the central bilayer.  Let $x_j=\epsilon-V_j$, where $\epsilon$ is the scalar energy argument of the normal bilayer problem.  Rearranging Eqs.~\eqref{eq:bilayer-eA1}--\eqref{eq:bilayer-eB2} with the amplitudes belonging to $\Psi_{m+1}$ on the left and those belonging to $\Psi_m$ on the right gives
+\begin{equation}
+    L_{\rm BL}\Psi_{m+1}=R_{\rm BL}\Psi_m,
+    \qquad
+    T_{\rm BL}(\epsilon,K)=L_{\rm BL}^{-1}R_{\rm BL}.
+    \label{eq:TBL-def}
+\end{equation}
+The matrices are
+\begin{align}
+    L_{\rm BL}
+    &=
+    \begin{pmatrix}
+        x_1 & \xi & 0 & 0\\
+        \eta^* & 0 & 0 & 0\\
+        0 & 0 & x_2 & \xi\\
+        t_\perp & 0 & \eta^* & 0
+    \end{pmatrix},
+    \label{eq:LBL}\\
+    R_{\rm BL}
+    &=
+    \begin{pmatrix}
+        0 & -\eta & 0 & -t_\perp\\
+        -\xi^* & -x_1 & 0 & 0\\
+        0 & 0 & 0 & -\eta\\
+        0 & 0 & -\xi^* & -x_2
+    \end{pmatrix}.
+    \label{eq:RBL}
+\end{align}
+The first row of Eq.~\eqref{eq:LBL}, for example, is just Eq.~\eqref{eq:bilayer-eA1} written as
+\begin{equation}
+    x_1A_1(m)+\xi B_1(m+1)
+    =
+    -\eta B_1(m)-t_\perp B_2(m).
+\end{equation}
+Thus the transfer matrix is not an additional approximation; it is a reorganization of the same tight-binding equations.
+
+The normal bilayer modes may be written in Bloch form.  The corresponding transfer roots are
+\begin{equation}
+    \lambda_{\nu,\pm}
+    =
+    \exp\left[i\left(\frac{K}{2}\pm Q_\nu\right)\right],
+    \label{eq:bilayer-roots}
+\end{equation}
+where $Q_\nu$ is determined by the bilayer secular equation.  In the numerical implementation the eigenvectors are obtained from the transfer matrix itself rather than from closed-form spinors, because special points such as layer charge neutrality may make intermediate analytic divisions singular.
+
+\subsection{Central BdG transfer matrix}
+\label{subsec:central-transfer}
+
+Since the central region is normal, electron and hole amplitudes propagate independently.  Using Eq.~\eqref{eq:central-hole-map}, the central BdG transfer matrix is
+\begin{align}
+    \Xi_{m+1}
+    &=
+    T_C(E,K)\Xi_m,
+    \label{eq:central-transfer-recurrence}\\
+    T_C(E,K)
+    &=
+    \diag(T_e,T_h),
+    \label{eq:central-transfer}\\
+    T_e&=T_{\rm BL}(\mu_C+E,K),
+    \\
+    T_h&=T_{\rm BL}(\mu_C-E,K).
+    \notag
+\end{align}
+The explicit determinant checks and limiting cases of $T_{\rm BL}$ are collected in Appendix~\ref{app:transfer-matrices}.  Lead transfer matrices $T_F$ and $T_S$ are constructed from the monolayer BdG equations, Eqs.~\eqref{eq:mono-eA}--\eqref{eq:mono-hB}, by the same staggered procedure.
+
+\subsection{Flux metric and mode classification}
+\label{subsec:flux-mode-classification}
+
+The propagation direction of a multiband transfer eigenmode must be determined by its lattice current, not by the sign of a phase label alone.  For the monolayer BdG ordering
+\begin{equation}
+    \Phi_m=
+    \begin{pmatrix}
+        u_A(m-1)&u_B(m)&v_A(m-1)&v_B(m)
+    \end{pmatrix}^{T},
+\end{equation}
+the quasiparticle current can be written as the bilinear form
+\begin{align}
+    J_{\rm qp}(\Phi)
+    &=\Phi^\dagger\Sigma\Phi,
+    \label{eq:lead-flux-metric}\\
+    \Sigma
+    &=
+    \begin{pmatrix}
+        \sigma_\xi & 0\\
+        0 & -\sigma_\xi
+    \end{pmatrix},
+    &
+    \sigma_\xi
+    &=
+    \begin{pmatrix}
+        0 & -i\xi\\
+        i\xi^* & 0
+    \end{pmatrix}.
+    \notag
+\end{align}
+For the central ordering of Eq.~\eqref{eq:central-BdG-state},
+\begin{equation}
+    \Sigma_C=
+    \diag(\sigma_\xi,\sigma_\xi,-\sigma_\xi,-\sigma_\xi).
+    \label{eq:central-flux-metric}
+\end{equation}
+Current conservation in a uniform region implies the pseudo-unitarity relation
+\begin{equation}
+    T^\dagger\Sigma T=\Sigma.
+    \label{eq:pseudo-unitarity}
+\end{equation}
+If $T\zeta_i=\lambda_i\zeta_i$ and $T\zeta_j=\lambda_j\zeta_j$, Eq.~\eqref{eq:pseudo-unitarity} gives
+\begin{equation}
+    \left(\lambda_i^*\lambda_j-1\right)
+    \zeta_i^\dagger\Sigma\zeta_j=0.
+    \label{eq:flux-orthogonality}
+\end{equation}
+Thus distinct propagating modes can be chosen flux-orthogonal.  Degenerate propagating subspaces should be explicitly orthogonalized with respect to $\Sigma$ before squared modal amplitudes are interpreted as probabilities.
+
+In the left ferromagnetic lead, the prescribed incident electron is a unit-flux mode $\zeta_{\rm in}$ with $J>0$.  The outgoing lead basis $Z_F^-$ contains reflected propagating modes with $J<0$ and evanescent modes decaying toward $m\to-\infty$.  At the left boundary,
+\begin{equation}
+    \Phi_F(1)=\zeta_{\rm in}+Z_F^- r.
+    \label{eq:left-lead-state}
+\end{equation}
+In the right superconducting lead, the physical basis $Z_S^+$ contains propagating modes with $J>0$ and evanescent modes decaying toward $m\to+\infty$:
+\begin{equation}
+    \Phi_S(N+1)=Z_S^+ t.
+    \label{eq:right-lead-state}
+\end{equation}
+
+\subsection{Stable finite-length propagation}
+\label{subsec:stable-propagation}
+
+The finite central bilayer must retain all eight transfer modes.  Let $V_+$ and $V_-$ denote the $8\times4$ matrices whose columns are the right-going/right-decaying and left-going/left-decaying central modes.  The central boundary states are represented as
+\begin{align}
+    \Xi_L &= V_+ a_+^L+V_- a_-^L,
+    \label{eq:central-left-state}\\
+    \Xi_R &= V_+ P_+(N)a_+^L+V_- a_-^R.
+    \label{eq:central-right-state}
+\end{align}
+Here
+\begin{align}
+    P_+(N)&=\diag\left[(\lambda_1^+)^N,\ldots,(\lambda_4^+)^N\right],
+    \label{eq:P-plus}\\
+    P_-(N)&=\diag\left[(\lambda_1^-)^{-N},\ldots,(\lambda_4^-)^{-N}\right].
+    \label{eq:P-minus}
+\end{align}
+The modes are referenced at the boundary where their explicit propagation factor has modulus no greater than one.  This representation is analytically equivalent to direct propagation through $T_C^N$, but avoids generating exponentially large factors from evanescent modes.

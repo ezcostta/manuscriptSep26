@@ -1,0 +1,26 @@
+\section{Lattice current and pseudo-unitarity}
+\label{app:current-flux}
+
+For a hopping bond crossing the cut between cells $m$ and $m+1$, the particle current carried by an electron amplitude is
+\begin{equation}
+    J_{m\to m+1}
+    =
+    2\operatorname{Im}\left[\xi A^*(m)B(m+1)\right].
+    \label{eq:lattice-current-app}
+\end{equation}
+This sign follows from the continuity equation with the hopping convention of Eq.~\eqref{eq:H-t}.  For a BdG vector, the hole contribution enters with the opposite sign because a hole amplitude represents a missing electron.  This gives the flux metrics in Eqs.~\eqref{eq:lead-flux-metric} and \eqref{eq:central-flux-metric}.
+
+If the current is conserved by one transfer step, then
+\begin{equation}
+    (T\Phi)^\dagger\Sigma(T\Phi)=\Phi^\dagger\Sigma\Phi
+\end{equation}
+for all states $\Phi$, and hence
+\begin{equation}
+    T^\dagger\Sigma T=\Sigma.
+\end{equation}
+For transfer eigenvectors this implies
+\begin{equation}
+    \left(\lambda_i^*\lambda_j-1\right)
+    \zeta_i^\dagger\Sigma\zeta_j=0.
+\end{equation}
+In particular, an evanescent mode with $|\lambda|\ne1$ has zero self-flux, while distinct propagating modes can be chosen flux-orthogonal.  Inside a degenerate propagating subspace, a stable numerical procedure is to diagonalize the Hermitian matrix $Z^\dagger\Sigma Z$ formed from any computed basis $Z$ for the subspace, then normalize the resulting combinations to unit flux.

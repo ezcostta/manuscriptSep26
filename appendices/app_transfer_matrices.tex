@@ -1,0 +1,86 @@
+\section{Transfer matrices and bilayer roots}
+\label{app:transfer-matrices}
+
+This appendix stores the algebra that is too detailed for the main text.  For a normal monolayer with scalar energy parameter $x$, the staggered state obeys
+\begin{equation}
+    L_M\phi_{m+1}=R_M\phi_m,
+\end{equation}
+with
+\begin{align}
+    L_M&=
+    \begin{pmatrix}
+        x & \xi\\
+        \eta^* & 0
+    \end{pmatrix},
+    &
+    R_M&=
+    \begin{pmatrix}
+        0 & -\eta\\
+        -\xi^* & -x
+    \end{pmatrix},
+    \notag\\
+    T_M&=L_M^{-1}R_M.
+\end{align}
+
+For the normal AB bilayer with $x_j=\epsilon-V_j$, the recurrence is
+\begin{equation}
+    L_{\rm BL}\Psi_{m+1}=R_{\rm BL}\Psi_m,
+    \qquad
+    T_{\rm BL}=L_{\rm BL}^{-1}R_{\rm BL},
+\end{equation}
+where
+\begin{align}
+    L_{\rm BL}
+    &=
+    \begin{pmatrix}
+        x_1 & \xi & 0 & 0\\
+        \eta^* & 0 & 0 & 0\\
+        0 & 0 & x_2 & \xi\\
+        t_\perp & 0 & \eta^* & 0
+    \end{pmatrix},
+    \label{eq:TBL-L-app}\\
+    R_{\rm BL}
+    &=
+    \begin{pmatrix}
+        0 & -\eta & 0 & -t_\perp\\
+        -\xi^* & -x_1 & 0 & 0\\
+        0 & 0 & 0 & -\eta\\
+        0 & 0 & -\xi^* & -x_2
+    \end{pmatrix}.
+    \label{eq:TBL-LR-app}
+\end{align}
+A useful implementation check is
+\begin{equation}
+    \det T_{\rm BL}=\left(\frac{\eta}{\eta^*}\right)^2=e^{2iK},
+\end{equation}
+valid away from $\eta(K)=0$.
+
+Using the Bloch form $A_j(m)=U_{Aj}e^{im\vartheta}$, $B_j(m)=U_{Bj}e^{im\vartheta}$ and defining
+\begin{equation}
+    f(\vartheta,K)=\eta(K)+\xi e^{i\vartheta},
+    \qquad
+    s=|f|^2,
+\end{equation}
+the bilayer secular equation is
+\begin{equation}
+    (x_1^2-s)(x_2^2-s)-t_\perp^2x_1x_2=0.
+\end{equation}
+The two solutions are
+\begin{equation}
+\begin{split}
+    s_\nu(\epsilon)
+    ={}&
+    \frac{1}{2}
+    \left[
+        x_1^2+x_2^2
+        +\nu\sqrt{(x_1^2-x_2^2)^2+4t_\perp^2x_1x_2}
+    \right],
+    \\
+    &\nu=\pm1.
+\end{split}
+\end{equation}
+Writing $\vartheta=K/2+Q$, one obtains
+\begin{equation}
+    s=t^2\left[3+2\cos K+4\cos(K/2)\cos Q\right],
+\end{equation}
+which leads to the roots quoted in Eq.~\eqref{eq:bilayer-roots}.
