@@ -1,24 +1,337 @@
-\section{Numerical results}
+\section{Numerical results and resonance analysis}
 \label{sec:results}
 
-This section is the next construction target.  The manuscript should not yet claim a final physical conclusion before the ridge diagnostics of Sec.~\ref{sec:resonances} have been computed and compared with the conductance maps.
-
-The first results subsection should present numerical validation: the mode classification, the convergence with respect to the transverse grid, and the unitarity error
+The formalism developed above expresses the differential conductance in
+terms of the microscopic Andreev-reflection amplitude.  In the subgap
+regime, \(|E|<\Delta_0\), no propagating quasiparticle mode exists in the
+superconducting lead, and the conductance reduces to
 \begin{equation}
-    \epsilon_{\rm unitarity}
-    =
-    \left|1-R_N-R_A-T_{\rm QP}\right|.
+	G_A^{(g)}(E,N)
+	=
+	\frac{1}{2\pi}
+	\sum_{\sigma=\pm1}
+	\int_{-\pi}^{\pi}
+	dK\,
+	\chi_{\rm in}(E,K,\sigma)\,
+	2
+	\left|
+	r_{he}^{(g)}(E,K,\sigma,N)
+	\right|^2 .
+	\label{eq:results_subgap_conductance}
 \end{equation}
-This audit should be shown before any physical interpretation of the maps.
-
-The second subsection should show the subgap Andreev conductance maps
+The purpose of this section is to evaluate Eq.~\eqref{eq:results_subgap_conductance}
+for the two contact geometries and to relate the resulting conductance
+ridges to the round-trip matrix
 \begin{equation}
-    G_A^{(\oneone)}(E,N),
-    \qquad
-    G_A^{(\onetwo)}(E,N),
+	\mathcal M_{\rm rt}^{(g)}
+	=
+	R_F P_-(N) R_S^{(g)} P_+(N).
+	\label{eq:results_round_trip_matrix}
 \end{equation}
-for the parameter set used in the code validation.  The comparison between the two geometries should focus on which ridges are common, which are shifted, and which are enhanced or suppressed by changing the contacted layer at the superconducting side.
 
-The third subsection should implement the resonance overlay.  For the dominant bright branches, plot the numerically obtained conductance map together with the predicted curves $E_{\ell j}(N)$ extracted from the phase condition of Eq.~\eqref{eq:phase-condition}, filtered by the $K$-flatness diagnostic of Eq.~\eqref{eq:K-flatness} and the residue weight of Eq.~\eqref{eq:residue-weight}.
+\subsection{Numerical parameters and consistency checks}
+\label{subsec:numerical_parameters}
 
-The fourth subsection should analyze the dependence on the exchange field.  Since $h$ shifts the electron and hole longitudinal momenta in the ferromagnetic lead, it changes both the open-channel window $\chi_{\rm in}$ and the phase matching in the bilayer cavity.  The natural observable is the evolution of $G_A(E,N)$ and of the dominant round-trip eigenvalues with increasing spin polarization.
+Unless otherwise stated, all energies are measured in units of the
+intralayer hopping \(t\).  The interlayer hopping is denoted by \(t_\perp\),
+the superconducting gap by \(\Delta_0\), and the exchange field in the
+ferromagnetic lead by \(h\).  The central bilayer contains \(N\) longitudinal
+cells, and the transverse momentum \(K\in[-\pi,\pi]\) is integrated by
+numerical quadrature.
+
+For each point \((E,K,\sigma,N)\), we compute the reflection and transmission
+probabilities
+\begin{equation}
+	R_N=
+	|r_{ee}|^2,
+	\qquad
+	R_A=
+	|r_{he}|^2,
+	\qquad
+	T_{\rm QP}
+	=
+	\sum_{\nu\in{\rm prop.}}
+	|t_\nu|^2 .
+\end{equation}
+The numerical solution is accepted only when the flux-conservation residual
+\begin{equation}
+	\delta_{\rm flux}
+	=
+	\left|
+	1-R_N-R_A-T_{\rm QP}
+	\right|
+	\label{eq:flux_residual}
+\end{equation}
+remains close to machine precision over the open-channel region
+\(\chi_{\rm in}=1\).
+
+% Suggested text once parameters are fixed:
+% In the calculations below we use
+% \(t_\perp/t=\cdots\), \(\Delta_0/t=\cdots\),
+% \(\mu_F/t=\cdots\), \(\mu_C/t=\cdots\), \(\mu_S/t=\cdots\),
+% and \(h/t=\cdots\).  The transverse integral is evaluated using
+% \(N_K=\cdots\) points.
+
+\subsection{Andreev conductance maps}
+\label{subsec:andreev_maps}
+
+Figure~\ref{fig:andreev_maps} shows the subgap Andreev conductance
+\(G_A^{(g)}(E,N)\) for the two contact geometries.  The maps display a
+sequence of sharp ridge-like structures as a function of the excitation
+energy \(E\) and the bilayer length \(N\).  These ridges are the most
+prominent finite-size effect of the normal bilayer region.
+
+\begin{figure*}[t]
+	\centering
+	\includegraphics[width=\textwidth]{figures/results/andreev_maps.pdf}
+	\caption{
+	Subgap Andreev conductance maps for the two contact geometries.
+	Panel (a) shows \(G_A^{(1\to1)}(E,N)\), while panel (b) shows
+	\(G_A^{(1\to2)}(E,N)\).  The color scale represents the dimensionless
+	conductance per transverse unit cell, in units of \(e^2/h\).
+	The ridge-like structures originate from coherent round trips inside
+	the finite bilayer region.
+	}
+	\label{fig:andreev_maps}
+\end{figure*}
+
+The two geometries share the same central bilayer spectrum, but differ in
+the right-interface selector matrices and therefore in the superconducting
+reflection matrix \(R_S^{(g)}\).  Consequently, the ridge pattern is not
+determined by the bilayer dispersion alone.  It also depends on how each
+central mode couples to the superconducting lead.
+
+\subsection{Fixed-\texorpdfstring{\(K\)}{K} channel resonances}
+\label{subsec:fixed_k_resonances}
+
+The integrated conductance \(G_A(E,N)\) is obtained only after summing over
+spin and integrating over transverse momentum.  The microscopic resonance
+condition, however, is naturally formulated at fixed \((K,\sigma)\).  We
+therefore first examine the channel-resolved conductance
+\begin{equation}
+	g_A^{(g)}(E,K,\sigma,N)
+	=
+	\chi_{\rm in}(E,K,\sigma)
+	2
+	\left|
+	r_{he}^{(g)}(E,K,\sigma,N)
+	\right|^2 .
+	\label{eq:fixed_k_conductance}
+\end{equation}
+
+\begin{figure}[t]
+	\centering
+	\includegraphics[width=\columnwidth]{figures/results/fixed_k_resonances.pdf}
+	\caption{
+		Representative fixed-\(K\) Andreev conductance resonances.  Unlike the
+		integrated map, this quantity probes a single transverse channel and
+		therefore exposes the microscopic resonances before transverse averaging.
+	}
+	\label{fig:fixed_k_resonances}
+\end{figure}
+
+At fixed \(K\), sharp maxima of Eq.~\eqref{eq:fixed_k_conductance} can be
+traced to the eigenvalues of the round-trip matrix
+\(\mathcal M_{\rm rt}^{(g)}(E,K,\sigma,N)\).  This fixed-channel analysis is
+the first step toward understanding which microscopic resonances survive in
+the integrated conductance.
+
+\subsection{Round-trip eigenvalues and bright resonances}
+\label{subsec:round_trip_eigenvalues}
+
+Let
+\begin{equation}
+	\mathcal M_{\rm rt}^{(g)} v_j^R
+	=
+	\mu_j v_j^R,
+	\qquad
+	(v_j^L)^\dagger\mathcal M_{\rm rt}^{(g)}
+	=
+	\mu_j (v_j^L)^\dagger,
+\end{equation}
+with biorthogonal normalization
+\begin{equation}
+	(v_j^L)^\dagger v_k^R=\delta_{jk}.
+\end{equation}
+For a diagonalizable round-trip matrix, the Andreev amplitude can be written
+as
+\begin{equation}
+	r_{he}^{(g)}
+	=
+	\sum_j
+	\frac{C_j^{(g)}}{1-\mu_j^{(g)}} ,
+	\label{eq:rhe_modal_sum_results}
+\end{equation}
+where
+\begin{equation}
+	\begin{split}
+		C_j^{(g)}
+		=&
+		\left[
+		e_h^\dagger
+		T_{F\leftarrow C}
+		P_-
+		R_S^{(g)}
+		P_+
+		v_j^R
+		\right]
+		\\
+		&\times
+		\left[
+			(v_j^L)^\dagger t_{\rm in}
+			\right] .
+	\end{split}
+	\label{eq:residue_definition_results}
+\end{equation}
+Writing
+\begin{equation}
+	\mu_j^{(g)}
+	=
+	\rho_j^{(g)} e^{i\Theta_j^{(g)}},
+\end{equation}
+a single isolated resonance occurs when
+\begin{equation}
+	\rho_j^{(g)}\simeq 1,
+	\qquad
+	\Theta_j^{(g)}\simeq 2\pi\ell,
+	\qquad
+	\ell\in\mathbb Z .
+	\label{eq:phase_condition_results}
+\end{equation}
+The modulus \(\rho_j\) measures how much of the mode survives one complete
+round trip, while \(\Theta_j\) is the accumulated round-trip phase.  The
+residue \(C_j\) determines whether the pole is bright or dark in the
+physical conductance: a near-zero denominator in Eq.~\eqref{eq:rhe_modal_sum_results}
+produces a visible ridge only when the incident electron couples appreciably
+to the corresponding round-trip eigenmode and that eigenmode has appreciable
+hole readout at the ferromagnetic lead.
+
+A useful real-axis diagnostic of resonance proximity is the smallest singular
+value
+\begin{equation}
+	s_{\min}^{(g)}
+	=
+	s_{\min}
+	\left[
+		I_4-\mathcal M_{\rm rt}^{(g)}
+		\right].
+	\label{eq:smin_results}
+\end{equation}
+Unlike the determinant, this quantity measures near-singularity directly and
+is therefore more robust when several round-trip eigenvalues contribute
+simultaneously.
+
+\begin{figure}[t]
+	\centering
+	\includegraphics[width=\columnwidth]{figures/results/round_trip_diagnostics.pdf}
+	\caption{
+		Round-trip resonance diagnostics for a representative geometry and spin
+		sector.  The plotted quantities may include
+		\(s_{\min}(I_4-\mathcal M_{\rm rt})\), \(\rho_j\), \(\Theta_j\), and
+		the residue weight \(|C_j|/|1-\mu_j|\).  Visible conductance ridges are
+		associated with round-trip eigenvalues close to unity and with non-small
+		residues.
+	}
+	\label{fig:round_trip_diagnostics}
+\end{figure}
+
+\subsection{From fixed-\texorpdfstring{\(K\)}{K} resonances to integrated ridges}
+\label{subsec:ridge_overlays}
+
+The condition in Eq.~\eqref{eq:phase_condition_results} is a fixed-\(K\)
+criterion.  A ridge in the integrated conductance appears only if the
+corresponding resonance branch remains sufficiently aligned as \(K\) varies
+over the open-channel window.  Let
+\begin{equation}
+	E_{\ell j}^{(g)}(K,N;\sigma)
+\end{equation}
+be a solution of
+\begin{equation}
+	\Theta_j^{(g)}(E,K,\sigma,N)=2\pi\ell .
+\end{equation}
+A simple measure of transverse dispersion is
+\begin{equation}
+	\begin{split}
+		\delta E_{\ell j}^{(g)}(N;\sigma)
+		=&
+		\max_{K\in\mathcal W_{\rm in}}
+		E_{\ell j}^{(g)}(K,N;\sigma)
+		\\
+		&-
+		\min_{K\in\mathcal W_{\rm in}}
+		E_{\ell j}^{(g)}(K,N;\sigma),
+	\end{split}
+	\label{eq:k_flatness_results}
+\end{equation}
+where
+\begin{equation}
+	\mathcal W_{\rm in}(E,\sigma)
+	=
+	\left\{
+	K\in[-\pi,\pi]:
+	\chi_{\rm in}(E,K,\sigma)=1
+	\right\}.
+\end{equation}
+Branches with
+\begin{equation}
+	\delta E_{\ell j}^{(g)}(N;\sigma)
+	\lesssim
+	\Gamma_{\ell j}^{(g)}(N)
+\end{equation}
+are expected to survive transverse integration, where
+\(\Gamma_{\ell j}^{(g)}(N)\) is the numerical linewidth of the associated
+fixed-\(K\) resonance.  Branches that disperse strongly with \(K\) are
+washed out by the transverse integral even if they are sharp in a single
+channel.
+
+\begin{figure*}[t]
+	\centering
+	\includegraphics[width=\textwidth]{figures/results/ridge_overlays.pdf}
+	\caption{
+	Conductance maps with resonance-branch overlays.  The background shows
+	\(G_A^{(g)}(E,N)\), while the curves show the predicted branches
+	\(E_{\ell j}^{(g)}(N)\) obtained from the round-trip phase condition.
+	Agreement between the curves and the bright ridges identifies the ridges
+	as coherent finite-length resonances of the bilayer cavity.
+	}
+	\label{fig:ridge_overlays}
+\end{figure*}
+
+This comparison is the central test of the resonance interpretation.  A
+visible ridge must satisfy three conditions simultaneously: the round-trip
+matrix must be nearly singular, the relevant modal residue must be large
+enough to make the pole bright, and the fixed-\(K\) resonance branch must be
+flat enough to survive the transverse integral.
+
+\subsection{Comparison between the two geometries}
+\label{subsec:geometry_comparison_results}
+
+The two geometries differ only through the superconducting-side interface
+maps, but this local change is sufficient to modify the full round-trip
+matrix and therefore the resonance pattern.  In the \(1\to1\) geometry, the
+ferromagnetic and superconducting monolayers are connected through the same
+graphene layer.  In the \(1\to2\) geometry, a quasiparticle injected from the
+ferromagnet must couple through the bilayer region before reaching the layer
+connected to the superconductor.  The resulting change in \(R_S^{(g)}\) and
+in the modal residues \(C_j^{(g)}\) changes which resonances are bright in
+the integrated conductance.
+
+% Suggested discussion once figures are available:
+% Compare ridge visibility, spacing, curvature, and peak intensity between
+% the two maps.  Identify whether one geometry favors longer-lived modes
+% (\rho_j closer to one), stronger Andreev conversion, or flatter branches
+% in K.
+
+\subsection{Summary of the numerical results}
+\label{subsec:results_summary}
+
+The conductance maps reveal that the finite bilayer does not merely act as a
+featureless spacer between the ferromagnet and the superconductor.  Instead,
+it behaves as a coherent cavity whose internal modes undergo repeated
+reflection between the two atomically distinct contacts.  The round-trip
+matrix \(\mathcal M_{\rm rt}^{(g)}\) provides the microscopic description of
+this cavity.  Its eigenvalues determine the resonance phase and lifetime,
+while the residues determine whether the corresponding poles are visible in
+the Andreev conductance.  The ridge overlays therefore provide a direct
+connection between the transfer-matrix formalism and the structures observed
+in \(G_A(E,N)\).
